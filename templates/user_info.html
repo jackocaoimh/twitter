@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h1 class="display-4">User info </h1>
+
+<div style="display: inline-block; margin-right: 10px;">
+    <label for="username"><strong>Username:</strong> </label>
+    <p id="username">{{user.username}}</p>
+</div>
+<div style="display: inline-block; margin-right: 10px;">
+    <label for="first_name"><strong>First Name:</strong> </label>
+    <p id="first_name">{{user.first_name}}</p>
+</div>
+<div style="display: inline-block; margin-right: 10px;">
+    <label for="last_name"><strong>Last Name:</strong> </label>
+    <p id="last_name">{{user.last_name}}</p>
+</div>
+<div style="display: inline-block; margin-right: 10px;">
+    <label for="email"><strong>Email:</strong> </label>
+    <p id="email">{{user.email}}</p>
+</div>
+
+{% endblock %}
