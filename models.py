@@ -12,7 +12,7 @@ def connect_db(app):
 
 class User(db.Model):
     
-    __tablename__='Users'
+    __tablename__='users'
 
     # id = db.Column(db.Integer, 
     #                primary_key=True, 
@@ -37,6 +37,7 @@ class User(db.Model):
                            nullable=False,
                            unique=False)
     
+    # Cascade all mean if the user is deleted all their feedback will be deleted too
     feedback = db.relationship("Feedback", backref="user", cascade="all,delete")
     
     # start_register
@@ -60,11 +61,11 @@ class User(db.Model):
 
         Return user if valid; else return False.
         """
-        u = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(username=username).first()
 
-        if u and bcrypt.check_password_hash(u.password, password):
+        if user and bcrypt.check_password_hash(user.password, password):
             # return user instance
-            return u
+            return user
         else:
             return False
     # end_authenticate    
@@ -88,6 +89,6 @@ class Feedback(db.Model):
                         db.ForeignKey('users.username'),
                         nullable=False)
     
-    # user = db.relationship('User', backref='feedbacks')
+    
     
 

@@ -22,4 +22,36 @@
     <p id="email">{{user.email}}</p>
 </div>
 
+<h2>User Feedback</h2>
+
+{% for feedback in user.feedback %}
+
+<li>
+    {{feedback.title}}
+    <small>{{feedback.content}}</small>
+</li>
+
+<form>
+    <button formmethod="GET"
+            formaction="/feedback/{{feedback.id}}/edit">
+    Edit
+    </button>
+
+    <button formmethod="POST"
+            formaction="/feedback/{{feedback.id}}/delete">
+    Delete
+    </button>
+</form>
+{% endfor%}
+
+<div>
+    <a href="/user/{{user.username}}/feedback/new"> Add Feedback</a>
+</div>
+
+<form action="/user/{{user.username}}/delete", method='POST'>
+    <button>
+        Delete your account
+    </button>
+</form>
+
 {% endblock %}
